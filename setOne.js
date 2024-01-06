@@ -1,5 +1,7 @@
 ////////// PROBLEM 1 //////////
-
+// git remote add origin https://github.com/d-zeh/functions2.git
+// git branch -M main
+// git push -u origin main
 // ***** Do not edit the code below *****
 function findGrape (arr) {
     for(let i=0; i<arr.length; i++) {
@@ -78,11 +80,10 @@ Write a function called 'pricesPlusTax' that takes 2 params: an array ('prices' 
 
 // CODE HERE
 function pricesPlusTax(arr, callback) {
-    let totalCost = [];
     for(i = 0; i < arr.length; i++) {
         totalCost.push(1.2 * arr[i])
     }
-    cb(totalCost)
+    callback(totalCost)
 }
 
 /* 
@@ -90,7 +91,9 @@ Invoke the 'pricesPlusTax' function, passing in the 'prices' array and a callbac
 */
 
 // CODE HERE
-
+pricesPlusTax(prices, (totalCost) => {
+    console.log(`The new array prices plus tax = ${totalCost}`)
+})
 
 ////////// PROBLEM 5 //////////
 
@@ -103,14 +106,22 @@ The inner function should run this logic: if the first number passing in is grea
 */
 
 // CODE HERE
-
+function multiplyingFactory (num1) {
+    return (num2) => {
+        if(num1 >= 5) {
+            console.log(num1 * num2)
+        } else {
+            console.log('Cannot multiply: num1 is smaller than 5')
+        }
+    }
+    }
 
 /* 
 Let's invoke the 'multiplyingFactory' function that will return another function, and save it into a variable called 'timesFour.' Let's pass in number 3 as a param.
 */
 
 // CODE HERE
-
+let timesFour = multiplyingFactory(3)
 
 /* 
 Now, timesFour is the new function (the inner function that was being returned when we invoked 'multiplyingFactory' function). The number 3 that we passed in as a first number is now saved in the 'timesFour' function. 
@@ -121,7 +132,7 @@ Run the code in node to see the printed result. You should see "Cannot multiply:
 */
 
 // INVOKE 'timesFour' HERE
-
+timesFour(4)
 
 /* 
 Change the param for 'multiplyingFactory' invocation to number 5. Then invoke 'timesFour' again, passing in number 4. Run the code in node, and you should see 20.
